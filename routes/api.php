@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/torrent',function(Request $request){
+if($request->has('term')){
+  return response()->json(\App\Torrent::where('name','like',"%{$reqest->term}%")->paginate(25));
+}
+else{
+  return response()->json(\App\Torrent::orderBy('created_at','desc')->paginate(25));
+}
+});

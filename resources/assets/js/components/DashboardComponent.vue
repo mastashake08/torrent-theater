@@ -18,6 +18,22 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+        },
+        data() {
+          return {
+          user : {},
+          torrents: {},
+          isReady: false
+        }
+        },
+        props: ['user-object'],
+        created(){
+          var that = this;
+          this.user = this.userObject;
+          axios.get('/api/torrent').then(function(data){
+            that.torrents = data.data;
+            that.isReady = true;
+          });
         }
     }
 </script>
