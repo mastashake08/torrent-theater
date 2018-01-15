@@ -7,6 +7,7 @@
 
                   <div class="panel-body">
                     <input type="text" class="form-control" v-model="magnet_uri" placeholder="Magnet URI"></input>
+                    <br>
                     <button class="btn btn-primary" v-on:click="downloadTorrent(magnet_uri,true)">Get Torrent</button>
                   </div>
               </div>
@@ -18,49 +19,28 @@
                     <div class="panel-heading">All Torrents</div>
 
                     <div class="panel-body">
+                      <input placeholder="Search Title" v-model="query" class="form-control" v-on:keyup="fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds&quality=1080p&query_term='+encodeURIComponent(query))">
+                      <br>
                       <transition name="fade">
-                      <table v-if="isReady == true" class="table table-responsive">
-                      <thead>
-                        <tr>
-                          <th>Poster</th>
-                          <th>Name</th>
-                          <th>MPA Rating</th>
-                          <th>Review Rating</th>
-                          <th>Genre</th>
-                          <th>Description</th>
-                          <th>Runtime</th>
-                          <th>Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="torrent in torrents.data.movies">
-                          <td><img class="img img-rounded img-responsive" :src="torrent.medium_cover_image"/></td>
-                          <td>{{torrent.title}}</td>
-                          <td>{{torrent.mpa_rating}}</td>
-                          <td>{{torrent.rating}}</td>
-                          <td>
-                            <ul>
-                              <li v-for="genre in torrent.genres">{{genre}}</li>
-                            </ul>
-                          </td>
-                          <td><p>{{torrent.synopsis}}</p></td>
-                          <td>{{torrent.runtime}} minutes</td>
-                          <td>
-                            <button class="btn btn-sm btn-default" v-on:click="downloadTorrent(torrent)">Download</button>
-                            <a class="btn btn-success" :href="'https://www.youtube.com/watch?v='+torrent.yt_trailer_code" target="_blank">Trailer</a>
-                          </td>
-                          </tr>
-                      </tbody>
-                      </table>
-                    </table>
+                        <div v-if="isReady" class="row">
+                          <div v-for="torrent in torrents.data.movies" class="col-sm-4">
+                            <img class="rounded mx-auto d-block" :src="torrent.medium_cover_image"/>
+                            <hr>
+                            <div class="form-group  text-center">
+                              <button class="btn btn-sm btn-default" v-on:click="downloadTorrent(torrent)">Download</button>
+                              <a class="btn btn-sm btn-success" :href="'https://www.youtube.com/watch?v='+torrent.yt_trailer_code" target="_blank">Trailer</a>
+
+                            </div>
+                          </div>
+                        </div>
                   </transition>
                       <div class="pagination">
-                       <button class="btn btn-default" @click="fetchTorrents('https://yts.am/api/v2/list_movies.json?page='+(torrents.data.page_number - 1))"
+                       <button class="btn btn-default" @click="fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds&quality=1080p&page='+(torrents.data.page_number - 1))"
                                :disabled="torrents.data.page_number == 1">
                            Previous
                        </button>
                        <span>Page {{torrents.data.page_number}} of {{(torrents.data.movie_count/torrents.data.limit).toFixed(0)}}</span>
-                       <button class="btn btn-default" @click="fetchTorrents('https://yts.am/api/v2/list_movies.json?page='+(torrents.data.page_number + 1))"
+                       <button class="btn btn-default" @click="fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds&quality=1080p&page='+(torrents.data.page_number + 1))"
                                :disabled="torrents.data.page_number == (torrents.data.movie_count/torrents.data.limit).toFixed(0)">Next
                        </button>
                    </div>
@@ -75,14 +55,14 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
         },
         data() {
           return{
             client: {},
             torrents: {},
             isReady: false,
-            magnet_uri: ''
+            magnet_uri: '',
+            query: ''
           }
 
         },
@@ -104,7 +84,7 @@
                console.log('Client is downloading:', tor.infoHash)
 
                tor.files.forEach(function (file) {
-                 console.log(file.name);
+
                  // Display the file by appending it to the DOM. Supports video, audio, images, and
                  // more. Specify a container element (CSS selector or reference to DOM node).
                  if(file.name.endsWith('mp4')){
@@ -137,9 +117,8 @@
           fetchTorrents: function(url){
             var that = this;
             axios.get(url).then(function(data){
-              console.log(data.data);
               that.torrents = data.data;
-              console.log(that.torrents);
+
               that.isReady = true;
             })
           },
@@ -147,7 +126,7 @@
         props: ['user-object'],
         created(){
           this.client = new WebTorrent();
-        this.fetchTorrents('https://yts.am/api/v2/list_movies.json');
-        }
+        this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds');
+                }
     }
 </script>

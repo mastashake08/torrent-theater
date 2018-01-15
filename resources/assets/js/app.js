@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.PirateBay = require('thepiratebay')
 window.WebTorrent = require('webtorrent/webtorrent.min')
 /**
  * Next, we will create a fresh Vue application instance and attach it to

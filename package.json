@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "fs": "0.0.1-security",
+        "thepiratebay": "^1.4.6",
         "webtorrent": "^0.98.20"
     }
 }
