@@ -63,7 +63,7 @@
             <div class="modal-body">
               <div class="loader"></div>
               <br>
-              Progress: {{progress}}%
+              Progress: {{total}}%
             </div>
             <div class="modal-footer">
             </div>
@@ -87,7 +87,7 @@
             isReady: false,
             magnet_uri: '',
             query: '',
-            progres:0
+            total:0
           }
 
         },
@@ -102,7 +102,7 @@
             this.client.add(torrent,function(tor){
               var _this = that;
               tor.on('download', function (bytes) {
-                _this.progress = tor.progress * 100;
+                _this.total = tor.progress * 100;
                 console.log(_this.progress);
               /*  console.log('just downloaded: ' + bytes)
                 console.log('total downloaded: ' + torrent.downloaded);

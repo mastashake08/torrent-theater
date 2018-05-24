@@ -78247,7 +78247,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       isReady: false,
       magnet_uri: '',
       query: '',
-      progres: 0
+      total: 0
     };
   },
 
@@ -78262,7 +78262,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.client.add(torrent, function (tor) {
         var _this = that;
         tor.on('download', function (bytes) {
-          _this.progress = tor.progress * 100;
+          _this.total = tor.progress * 100;
           console.log(_this.progress);
           /*  console.log('just downloaded: ' + bytes)
             console.log('total downloaded: ' + torrent.downloaded);
@@ -78568,7 +78568,7 @@ var render = function() {
               _vm._v(" "),
               _c("br"),
               _vm._v(
-                "\n          Progress: " + _vm._s(_vm.progress) + "%\n        "
+                "\n          Progress: " + _vm._s(_vm.total) + "%\n        "
               )
             ]),
             _vm._v(" "),
