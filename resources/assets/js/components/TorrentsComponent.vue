@@ -100,8 +100,9 @@
           $('#torrentModal').modal('show');
             var that = this;
             this.client.add(torrent,function(tor){
+              var _this = that;
               tor.on('download', function (bytes) {
-                that.progress = tor.progress * 100;
+                _this.progress = tor.progress * 100;
                 console.log(that.progress);
               /*  console.log('just downloaded: ' + bytes)
                 console.log('total downloaded: ' + torrent.downloaded);
