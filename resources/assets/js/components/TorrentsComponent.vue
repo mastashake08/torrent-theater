@@ -8,7 +8,7 @@
                       <div class="panel-body">
                         <!--<dashboard-component user-object={{Auth::user()}}></dashboard-component>-->
                         <div align="center" class="embed-responsive embed-responsive-16by9">
-                        <video id="video-player" v-on:play="stopModal()" autoplay controls class="embed-responsive-item"></video>
+                        <video id="video-player" v-on:canPlay="stopModal()" autoplay controls class="embed-responsive-item"></video>
                         </div>
                       </div>
                   </div>
