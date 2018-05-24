@@ -94,7 +94,7 @@
             if(userInput == false){
             torrent = this.formatMagnet(torrent);
           }
-          $('torrentModal').modal('show');
+          $('#torrentModal').modal('show');
 
             this.client.add(torrent,function(tor){
               tor.on('download', function (bytes) {
@@ -105,7 +105,7 @@
                 */
               });
               tor.on('ready',function(){
-                $('torrentModal').modal('hide');
+                $('#torrentModal').modal('hide');
               });
               // Got torrent metadata!
                console.log('Client is downloading:', tor.infoHash)
