@@ -78252,6 +78252,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
@@ -78263,7 +78265,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       magnet_uri: 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent',
       query: '',
       total: 0,
-      a2hs: true,
+      a2hs: false,
       deferredPrompt: null
     };
   },
@@ -78369,6 +78371,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         e.preventDefault();
         // Stash the event so it can be triggered later.
         _this3.deferredPrompt = e;
+        _this3.a2hs = true;
       });
       window.addEventListener('appinstalled', function (evt) {
         app.logEvent('a2hs', 'installed');
@@ -78396,41 +78399,48 @@ var render = function() {
         _c("div", { staticClass: "panel panel-default" }, [
           _c("div", { staticClass: "panel-heading" }, [_vm._v("Dashboard")]),
           _vm._v(" "),
-          _c("div", { staticClass: "panel-body" }, [
-            _c(
-              "div",
-              {
-                staticClass: "embed-responsive embed-responsive-16by9",
-                attrs: { align: "center" }
-              },
-              [
-                _c("video", {
-                  staticClass: "embed-responsive-item",
-                  attrs: { id: "video-player", autoplay: "", controls: "" },
-                  on: {
-                    playing: function($event) {
-                      _vm.stopModal()
-                    }
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _vm.a2hs
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-block btn-primary",
+          _c(
+            "div",
+            { staticClass: "panel-body" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "embed-responsive embed-responsive-16by9",
+                  attrs: { align: "center" }
+                },
+                [
+                  _c("video", {
+                    staticClass: "embed-responsive-item",
+                    attrs: { id: "video-player", autoplay: "", controls: "" },
                     on: {
-                      click: function($event) {
-                        _vm.addToHomescreen()
+                      playing: function($event) {
+                        _vm.stopModal()
                       }
                     }
-                  },
-                  [_vm._v("Install To Homescreen")]
-                )
-              : _vm._e()
-          ])
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("transition", { attrs: { name: "fade" } }, [
+                _vm.a2hs
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-block btn-primary",
+                        on: {
+                          click: function($event) {
+                            _vm.addToHomescreen()
+                          }
+                        }
+                      },
+                      [_vm._v("Install To Homescreen")]
+                    )
+                  : _vm._e()
+              ])
+            ],
+            1
+          )
         ])
       ])
     ]),
