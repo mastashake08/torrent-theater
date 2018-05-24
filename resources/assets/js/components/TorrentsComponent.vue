@@ -79,7 +79,7 @@
     export default {
         mounted() {
 
-          $('#video-player').addEventListener('play',this.stopModal());
+          document.getElementById('#video-player').addEventListener('play',this.stopModal());
         },
         data() {
           return{
@@ -103,6 +103,7 @@
             this.client.add(torrent,function(tor){
               tor.on('download', function (bytes) {
                 that.progress = torrent.progress * 100;
+                console.log(that.progress);
               /*  console.log('just downloaded: ' + bytes)
                 console.log('total downloaded: ' + torrent.downloaded);
                 console.log('download speed: ' + torrent.downloadSpeed)
