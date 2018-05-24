@@ -103,7 +103,6 @@
               var _this = that;
               tor.on('download', function (bytes) {
                 _this.total = tor.progress * 100;
-                console.log(_this.progress);
               /*  console.log('just downloaded: ' + bytes)
                 console.log('total downloaded: ' + torrent.downloaded);
                 console.log('download speed: ' + torrent.downloadSpeed)
