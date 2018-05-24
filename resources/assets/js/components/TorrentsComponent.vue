@@ -78,6 +78,8 @@
 <script>
     export default {
         mounted() {
+
+          $('#video-player').addEventListener('play',this.stopModal());
         },
         data() {
           return{
@@ -163,7 +165,6 @@
           // WebRTC is supported
           this.client = new WebTorrent();
           this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds');
-          document.getElementById('#video-player').addEventListener('play',this.stopModal());
         } else {
           // Use a fallback
           alert("WebTorrent is not supported in this browser! Please upgrade your browser!");
