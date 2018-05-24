@@ -108,7 +108,7 @@
         methods:{
           downloadTorrent: function(torrent,userInput){
             var that = this;
-            this.client.torrents.foreach(function(item,key)({
+            this.client.torrents.foreach(function(item,key){
               that.client.remove(item.id);
             });
             userInput = userInput || false;
