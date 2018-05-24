@@ -7,7 +7,7 @@
  "orientation": "landscape",
  "display": "standalone",
  "Scope": "/",
- "start_url": "/",
+ "start_url": "/home",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
