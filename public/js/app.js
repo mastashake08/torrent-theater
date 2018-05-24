@@ -78368,7 +78368,7 @@ var render = function() {
                   staticClass: "embed-responsive-item",
                   attrs: { id: "video-player", autoplay: "", controls: "" },
                   on: {
-                    canPlay: function($event) {
+                    playing: function($event) {
                       _vm.stopModal()
                     }
                   }
