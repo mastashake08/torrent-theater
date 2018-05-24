@@ -111,6 +111,7 @@
             this.client.torrents.forEach(function(item,key){
               that.client.remove(item);
             });
+            this.total = 0;
             userInput = userInput || false;
             if(userInput == false){
             torrent = this.formatMagnet(torrent);
@@ -174,6 +175,16 @@
         created(){
           if (WebTorrent.WEBRTC_SUPPORT) {
           // WebRTC is supported
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('/background.js').then(function(registration) {
+
+              }, function(err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+              });
+            });
+          }
           this.client = new WebTorrent();
           this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds');
         } else {
