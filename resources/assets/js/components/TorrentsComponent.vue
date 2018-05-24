@@ -28,6 +28,7 @@
                             <hr>
                             <div class="form-group  text-center">
                               {{torrent.title}}:
+                              <br>
                               <button class="btn btn-sm btn-default" v-on:click="downloadTorrent(torrent)">Stream</button>
                               <a class="btn btn-sm btn-success" :href="'https://www.youtube.com/watch?v='+torrent.yt_trailer_code" target="_blank">Trailer</a>
 
@@ -88,13 +89,15 @@
             if(userInput == false){
             torrent = this.formatMagnet(torrent);
           }
+          $('torrentModal').modal('show');
 
             this.client.add(torrent,function(tor){
               tor.on('download', function (bytes) {
-                console.log('just downloaded: ' + bytes)
+              /*  console.log('just downloaded: ' + bytes)
                 console.log('total downloaded: ' + torrent.downloaded);
                 console.log('download speed: ' + torrent.downloadSpeed)
                 console.log('progress: ' + torrent.progress)
+                */
               });
               tor.on('ready',function(){
                 $('torrentModal').modal('hide');
@@ -103,7 +106,7 @@
                console.log('Client is downloading:', tor.infoHash)
 
                tor.files.forEach(function (file) {
-                 $('torrentModal').modal('show')
+
                  // Display the file by appending it to the DOM. Supports video, audio, images, and
                  // more. Specify a container element (CSS selector or reference to DOM node).
                  if(file.name.endsWith('mp4')){
