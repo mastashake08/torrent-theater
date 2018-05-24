@@ -18,4 +18,11 @@
     </div>
 </div>
 <torrents-component></torrents-component>
+<script>
+document.getElementById("video-player").addEventListener("play", myFunction);
+
+function myFunction() {
+    $('#torrentModal').modal('hide');
+}
+</script>
 @endsection
