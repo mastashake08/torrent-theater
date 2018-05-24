@@ -125,7 +125,6 @@
               });
               tor.on('ready',function(){
                 console.log('ready');
-                $('#torrentModal').modal('hide');
               });
               // Got torrent metadata!
                console.log('Client is downloading:', tor.infoHash)
@@ -137,7 +136,6 @@
                  if(file.name.endsWith('mp4')){
                  file.renderTo('video#video-player')
 
-                 $('#torrentModal').modal('hide');
 
                }
                else{

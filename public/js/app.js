@@ -78285,7 +78285,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
         tor.on('ready', function () {
           console.log('ready');
-          $('#torrentModal').modal('hide');
         });
         // Got torrent metadata!
         console.log('Client is downloading:', tor.infoHash);
@@ -78296,8 +78295,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           // more. Specify a container element (CSS selector or reference to DOM node).
           if (file.name.endsWith('mp4')) {
             file.renderTo('video#video-player');
-
-            $('#torrentModal').modal('hide');
           } else {}
         });
       });
