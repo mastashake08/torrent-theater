@@ -4,6 +4,7 @@
  "description": "An online movie theatre powered by WebTorrent!",
  "theme_color": "#9C1113",
  "background_color": "#9C1113",
+ "orientation": "landscape",
  "display": "standalone",
  "Scope": "/",
  "start_url": "/home",
