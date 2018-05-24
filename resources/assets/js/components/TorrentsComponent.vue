@@ -109,7 +109,7 @@
           downloadTorrent: function(torrent,userInput){
             var that = this;
             this.client.torrents.forEach(function(item,key){
-              that.client.remove(item.id);
+              that.client.remove(item);
             });
             userInput = userInput || false;
             if(userInput == false){
