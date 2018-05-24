@@ -163,7 +163,7 @@
           // WebRTC is supported
           this.client = new WebTorrent();
           this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds');
-          $('#video-player').addEventListener('play',this.stopModal());
+          document.getElementById('#video-player').addEventListener('play',this.stopModal());
         } else {
           // Use a fallback
           alert("WebTorrent is not supported in this browser! Please upgrade your browser!");
