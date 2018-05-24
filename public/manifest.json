@@ -2,6 +2,11 @@
  "name": "Torrent Theatre",
  "short_name": "Torrent Theatre",
  "description": "An online movie theatre powered by WebTorrent!",
+ "theme_color": "#9C1113",
+ "background_color": "#9C1113",
+ "display": "standalone",
+ "Scope": "/",
+ "start_url": "/home",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",

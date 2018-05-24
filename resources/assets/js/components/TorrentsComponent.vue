@@ -10,6 +10,7 @@
                         <div align="center" class="embed-responsive embed-responsive-16by9">
                         <video id="video-player" v-on:playing="stopModal()" autoplay controls class="embed-responsive-item"></video>
                         </div>
+                        <button v-if="a2hs" v-on:click="addToHomescreen()" class="btn btn-block btn-primary">Install To Homescreen</button>
                       </div>
                   </div>
               </div>
@@ -90,6 +91,7 @@
 </template>
 
 <script>
+    let deferredPrompt;
     export default {
         mounted() {
 
@@ -101,11 +103,26 @@
             isReady: false,
             magnet_uri: 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent',
             query: '',
-            total:0
+            total:0,
+            a2hs: true
           }
 
         },
         methods:{
+          addToHomescreen: function(){
+            // Show the prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice
+              .then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                  console.log('User accepted the A2HS prompt');
+                } else {
+                  console.log('User dismissed the A2HS prompt');
+                }
+                deferredPrompt = null;
+              });
+          },
           downloadTorrent: function(torrent,userInput){
             var that = this;
             this.client.torrents.forEach(function(item,key){
@@ -173,6 +190,12 @@
         },
         props: ['user-object'],
         created(){
+          if (window.matchMedia('(display-mode: standalone)').matches) {
+          this.a2hs = false
+          }
+          if (window.navigator.standalone === true) {
+            this.a2hs = false
+          }
           if (WebTorrent.WEBRTC_SUPPORT) {
           // WebRTC is supported
           if ('serviceWorker' in navigator) {
@@ -185,6 +208,17 @@
               });
             });
           }
+
+
+          window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            deferredPrompt = e;
+          });
+          window.addEventListener('appinstalled', (evt) => {
+            app.logEvent('a2hs', 'installed');
+          });
           this.client = new WebTorrent();
           this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds');
         } else {
