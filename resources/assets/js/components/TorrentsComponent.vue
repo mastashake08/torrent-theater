@@ -118,18 +118,8 @@
               var _this = that;
               tor.on('download', function (bytes) {
                 _this.total = (tor.progress * 100).toFixed(3);
-              /*  console.log('just downloaded: ' + bytes)
-                console.log('total downloaded: ' + torrent.downloaded);
-                console.log('download speed: ' + torrent.downloadSpeed)
-                console.log('progress: ' + torrent.progress)
-                */
               });
-              tor.on('ready',function(){
-                console.log('ready');
-              });
-              // Got torrent metadata!
-               console.log('Client is downloading:', tor.infoHash)
-
+              tor.on('ready',function(){});
                tor.files.forEach(function (file) {
 
                  // Display the file by appending it to the DOM. Supports video, audio, images, and
