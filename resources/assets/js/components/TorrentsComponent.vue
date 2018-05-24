@@ -23,11 +23,11 @@
                       <br>
                       <transition name="fade">
                         <div v-if="isReady" class="row">
-                          <div v-for="torrent in torrents.data.movies" class="col-sm-4">
+                          <div v-for="torrent in torrents.data.movies" class="col-md-6">
                             <img class="rounded mx-auto d-block" :src="torrent.medium_cover_image"/>
                             <hr>
                             <div class="form-group  text-center">
-                              <button class="btn btn-sm btn-default" v-on:click="downloadTorrent(torrent)">Download</button>
+                              <button class="btn btn-sm btn-default" v-on:click="downloadTorrent(torrent)">Stream</button>
                               <a class="btn btn-sm btn-success" :href="'https://www.youtube.com/watch?v='+torrent.yt_trailer_code" target="_blank">Trailer</a>
 
                             </div>

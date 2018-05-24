@@ -28,6 +28,16 @@
         },
         props: ['user-object'],
         created(){
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('/background.js').then(function(registration) {
+
+              }, function(err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+              });
+            });
+          }
           var that = this;
           this.user = this.userObject;
           axios.get('/api/torrent').then(function(data){
