@@ -99,7 +99,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://github.com/mastashake08/torrent-theater">GitHub</a>
+                  <a href="{{url('/about')}}">About</a>
+                  <a href="https://github.com/mastashake08/torrent-theater">GitHub</a>
                 </div>
             </div>
         </div>

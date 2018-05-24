@@ -27,6 +27,7 @@
                             <img class="rounded mx-auto d-block" :src="torrent.medium_cover_image"/>
                             <hr>
                             <div class="form-group  text-center">
+                              {{torrent.title}}:
                               <button class="btn btn-sm btn-default" v-on:click="downloadTorrent(torrent)">Stream</button>
                               <a class="btn btn-sm btn-success" :href="'https://www.youtube.com/watch?v='+torrent.yt_trailer_code" target="_blank">Trailer</a>
 
@@ -49,6 +50,20 @@
                 </div>
             </div>
         </div>
+
+        <!-- loading modal -->
+         <div class="modal fade" id="torrentModal" role="dialog">
+        <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header" style="text-align: center">
+            <h3>Loading Torrent</h3>
+        </div>
+        <div class="modal-body">
+            <div class="loader"></div>
+        </div>
+        <div class="modal-footer" style="text-align: center"></div>
+    </div>
+  </div>
     </div>
 </template>
 
@@ -62,7 +77,8 @@
             torrents: {},
             isReady: false,
             magnet_uri: '',
-            query: ''
+            query: '',
+            torrentReady:false
           }
 
         },
@@ -80,15 +96,19 @@
                 console.log('download speed: ' + torrent.downloadSpeed)
                 console.log('progress: ' + torrent.progress)
               });
+              tor.on('ready',function(){
+                $('torrentModal').modal('hide');
+              });
               // Got torrent metadata!
                console.log('Client is downloading:', tor.infoHash)
 
                tor.files.forEach(function (file) {
-
+                 $('torrentModal').modal('show')
                  // Display the file by appending it to the DOM. Supports video, audio, images, and
                  // more. Specify a container element (CSS selector or reference to DOM node).
                  if(file.name.endsWith('mp4')){
                  file.renderTo('video#video-player')
+
                }
                else{
 
@@ -125,8 +145,15 @@
         },
         props: ['user-object'],
         created(){
+          if (WebTorrent.WEBRTC_SUPPORT) {
+          // WebRTC is supported
           this.client = new WebTorrent();
-        this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds');
+          this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds');
+        } else {
+          // Use a fallback
+          alert("WebTorrent is not supported in this browser! Please upgrade your browser!");
+        }
+
                 }
     }
 </script>

