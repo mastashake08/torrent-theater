@@ -2,16 +2,16 @@
 
 ## Introduction
 
-> Take part in the redecentralization of the web with movie streaming with the power of Bittorrent. Powered by the <a href="https://webtorrent.io">WebTorrent</a> javascript library, Torrent Theatre is a Laravel and Vue.js web application that allows users to stream and download movies over bittorrent protocol. No installations required and works across all major platforms. Please do not break the law when using this software and only watch open license and/or uncopyrighted material. You can find a working version of this application at <a href="https://torrent-theatre.online">https://torrent-theatre.online</a>
+> Take part in the redecentralization of the web with movie streaming with the power of Bittorrent. Powered by the <a target="_blank" href="https://webtorrent.io">WebTorrent</a> javascript library, Torrent Theatre is a Laravel and Vue.js web application that allows users to stream and download movies over bittorrent protocol. No installations required and works across all major platforms. Please do not break the law when using this software and only watch open license and/or uncopyrighted material. You can find a working version of this application at <a href="https://torrent-theatre.online" target="_blank">https://torrent-theatre.online</a>
 <br>
 Donations to this project can be made in NEO, Ca$h app, Parker POS or CODE:
 <br>
 <br>
 NEO: AH5cyWuuueBTAizYZtM4KJf9RSUs2uP3Ws
 <br>
-Ca$h: https://cash.me/$mastashake08
+Ca$h: <a target="_blank" href="https://cash.me/$mastashake08">https://cash.me/$mastashake08</a>
 <br>
-Parker POS: https://parkerpos.site/$jyrone_parker
+Parker POS: <a target="_blank" href="https://parkerpos.site/$jyrone_parker">https://parkerpos.site/$jyrone_parker</a>
 <br>
 Code: Send a pull request.
 
