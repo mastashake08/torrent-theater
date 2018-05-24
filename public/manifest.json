@@ -44,7 +44,13 @@
    "sizes": "192x192",
    "type": "image\/png",
    "density": "4.0"
-  }
+ },
+ {
+  "src": "\/web_hi_res_512.png",
+  "sizes": "512x512",
+  "type": "image\/png",
+  "density": "5.0"
+ }
 ],
 "background": {
   "scripts": ["background.js"]
