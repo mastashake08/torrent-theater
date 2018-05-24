@@ -102,7 +102,7 @@
             this.client.add(torrent,function(tor){
               var _this = that;
               tor.on('download', function (bytes) {
-                _this.total = tor.progress * 100;
+                _this.total = (tor.progress * 100).toFixed(3);
               /*  console.log('just downloaded: ' + bytes)
                 console.log('total downloaded: ' + torrent.downloaded);
                 console.log('download speed: ' + torrent.downloadSpeed)
@@ -110,6 +110,8 @@
                 */
               });
               tor.on('ready',function(){
+                console.log('ready');
+                $('#torrentModal').modal('hide');
               });
               // Got torrent metadata!
                console.log('Client is downloading:', tor.infoHash)

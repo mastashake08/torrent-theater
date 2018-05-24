@@ -15,5 +15,4 @@
         </div>
     </div>
 </div>
-<torrents-component></torrents-component>
 @endsection
