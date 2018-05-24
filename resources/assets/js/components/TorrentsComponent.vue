@@ -111,7 +111,7 @@
             if(userInput == false){
             torrent = this.formatMagnet(torrent);
           }
-          $("html, body").animate({ scrollTop: 0 }, "slow");
+          $(window).scrollTop(0);
           $('#torrentModal').modal('show');
             var that = this;
             this.client.add(torrent,function(tor){

@@ -78271,7 +78271,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (userInput == false) {
         torrent = this.formatMagnet(torrent);
       }
-      $("html, body").animate({ scrollTop: 0 }, "slow");
+      $(window).scrollTop(0);
       $('#torrentModal').modal('show');
       var that = this;
       this.client.add(torrent, function (tor) {
