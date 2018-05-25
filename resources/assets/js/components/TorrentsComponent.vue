@@ -54,7 +54,7 @@
                           </div>
                         </div>
                   </transition>
-                      <div class="pagination" v-if="torrents.data != null">
+                      <div class="pagination" v-if="torrents.data.movie_count != 0">
                        <button class="btn btn-default" @click="fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds&quality=1080p&page='+(torrents.data.page_number - 1))"
                                :disabled="torrents.data.page_number == 1">
                            Previous
@@ -83,7 +83,7 @@
               <br>
               Progress: {{total}}%
               <br>
-              Download Speed {{downloadSpeed}} b/sec
+              Download Speed {{downloadSpeed/1000000}} MB/sec
             </div>
             <div class="modal-footer">
             </div>
