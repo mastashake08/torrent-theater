@@ -105,7 +105,8 @@
         <transition>
         <div v-if="movie_details_ready">
 
-          <img class="rounded mx-auto d-block" :src="movie.medium_cover_image"/>
+          <img class="rounded mx-auto d-block center-block" :src="movie.medium_cover_image"/>
+          <br>
           Title: {{movie.title_long}}
           <br>
           MPA Rating: {{movie.mpa_rating}}
@@ -114,12 +115,7 @@
           <br>
           Description: <p>{{movie.description_full}}</p>
           <br>
-          Cast:
-          <ul>
-            <li v-for="cast in movie.cast">
-              {{cast.name}} - {{cast.character_name}}
-            </li>
-          </ul>
+          
 
         </div>
 
