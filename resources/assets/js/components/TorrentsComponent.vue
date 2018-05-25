@@ -44,7 +44,7 @@
                             <img class="rounded mx-auto d-block" :src="torrent.medium_cover_image"/>
                             <hr>
                             <div class="form-group  text-center">
-                              {{torrent.title}}:
+                              {{torrent.title}} ({{torrent.mpa_rating}}) - {{torrent.rating}}/10:
                               <br>
                               <button class="btn btn-sm btn-default" v-on:click="downloadTorrent(torrent)">Stream</button>
                               <a class="btn btn-sm btn-success" :href="'https://www.youtube.com/watch?v='+torrent.yt_trailer_code" target="_blank">Trailer</a>
