@@ -46,6 +46,7 @@
                             <div class="form-group  text-center">
                               {{torrent.title}} ({{torrent.mpa_rating}}) - {{torrent.rating}}/10:
                               <br>
+                              <button class="btn btn-sm btn-info" v-on:click="getMovie(torrent.id)">More Info</button>
                               <button class="btn btn-sm btn-default" v-on:click="downloadTorrent(torrent)">Stream</button>
                               <a class="btn btn-sm btn-success" :href="'https://www.youtube.com/watch?v='+torrent.yt_trailer_code" target="_blank">Trailer</a>
 
@@ -90,6 +91,45 @@
 
         </div>
       </div>
+      <!-- Modal -->
+<div class="modal fade" id="movieModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Loading Torrent</h4>
+      </div>
+      <div class="modal-body text-center">
+        <div v-if="movie_details_ready">
+
+          <img class="rounded mx-auto d-block" :src="movie.medium_cover_image"/>
+          Title: {{movie.title_long}}
+          <br>
+          MPA Rating: {{movie.mpa_rating}}
+          <br>
+          Rotten Tomatoes Rating: {{movie.rating}}/10
+          <br>
+          Description: <p>{{movie.description_full}}</p>
+          <br>
+          Cast:
+          <ul>
+            <li v-for="cast in movie.cast">
+              {{cast.name}} - {{cast.character_name}}
+            </li>
+          </ul>
+
+        </div>
+        <div v-elseclass="loader center-block"></div>
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
         </div>
 
 </template>
@@ -108,7 +148,9 @@
             query: '',
             total:0,
             a2hs: false,
-            deferredPrompt:null
+            deferredPrompt:null,
+            movie_details_ready:false,
+            movie: {}
           }
 
         },
@@ -198,6 +240,15 @@
           stopModal: function(){
 
               $('#torrentModal').modal('hide');
+          },
+          getMovie: function(id){
+            var that = this;
+            axios.get('https://yts.am/api/v2/movie_details.json?movie_id='+id+'&with_cast=true&with_images=true').then(function(data){
+              that.movie = data.data;
+
+              that.movie_details_ready = true;
+              $('#movieModal').modal('show')
+            })
           }
         },
         props: ['user-object'],
