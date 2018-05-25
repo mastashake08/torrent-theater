@@ -43,7 +43,7 @@
                           <div v-for="torrent in torrents.data.movies" class="col-md-6">
                             <img class="rounded mx-auto d-block" :src="torrent.medium_cover_image"/>
                             <hr>
-                            <div class="form-group  text-center">
+                            <div class="form-group center-blocl">
                               {{torrent.title_long}}  - {{torrent.rating}}/10:
                               <br>
                               <button class="btn btn-sm btn-info" v-on:click="getMovie(torrent.id)">More Info</button>
