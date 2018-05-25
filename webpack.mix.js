@@ -14,3 +14,11 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js').version();
 
 mix.sass('resources/assets/sass/app.scss', 'public/css').version();
+mix.browserSync('torrent-theatre.test');
+
+// Or...
+
+// https://browsersync.io/docs/options
+mix.browserSync({
+    proxy: 'torrent-theatre.test'
+});
