@@ -16,7 +16,6 @@ window.WebTorrent = require('webtorrent/webtorrent.min')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('dashboard-component', require('./components/DashboardComponent.vue'));
 Vue.component('torrents-component', require('./components/TorrentsComponent.vue'));
 
 const app = new Vue({

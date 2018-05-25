@@ -81,6 +81,8 @@
               <div class="loader center-block"></div>
               <br>
               Progress: {{total}}%
+              <br>
+              Download Speed {{downloadSpeed}} b/sec
             </div>
             <div class="modal-footer">
             </div>
@@ -141,9 +143,17 @@
             this.client.add(torrent,function(tor){
               var _this = that;
               tor.on('download', function (bytes) {
-                _this.total = (tor.progress * 100).toFixed(3);
+                _this.total = (tor.progress * 100).toFixed(3)
+                _this.downloadSpeed = tor.downloadSpeed
               });
               tor.on('ready',function(){});
+              tor.on('done', function(){
+                console.log('torrent finished downloading')
+                tor.files.forEach(function(file){
+                   // do something with file
+                   that.client.seed(file);
+                })
+              })
                tor.files.forEach(function (file) {
 
                  // Display the file by appending it to the DOM. Supports video, audio, images, and
