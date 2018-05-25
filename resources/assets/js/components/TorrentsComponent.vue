@@ -77,8 +77,8 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Loading Torrent</h4>
             </div>
-            <div class="modal-body">
-              <div class="loader"></div>
+            <div class="modal-body text-center">
+              <div class="loader center-block"></div>
               <br>
               Progress: {{total}}%
             </div>
