@@ -102,6 +102,7 @@
         <h4 class="modal-title">Loading Torrent</h4>
       </div>
       <div class="modal-body text-center">
+        <transition>
         <div v-if="movie_details_ready">
 
           <img class="rounded mx-auto d-block" :src="movie.medium_cover_image"/>
@@ -121,7 +122,9 @@
           </ul>
 
         </div>
-        <div v-elseclass="loader center-block"></div>
+
+        <div v-else class="loader center-block"></div>
+          </transition>
 
       </div>
       <div class="modal-footer">
