@@ -44,7 +44,7 @@
                             <img class="rounded mx-auto d-block" :src="torrent.medium_cover_image"/>
                             <hr>
                             <div class="form-group  text-center">
-                              {{torrent.title}} ({{torrent.mpa_rating}}) - {{torrent.rating}}/10:
+                              {{torrent.title_long}}  - {{torrent.rating}}/10:
                               <br>
                               <button class="btn btn-sm btn-info" v-on:click="getMovie(torrent.id)">More Info</button>
                               <button class="btn btn-sm btn-default" v-on:click="downloadTorrent(torrent)">Stream</button>
@@ -99,7 +99,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Loading Torrent</h4>
+        <h4 class="modal-title">{{movie.title}}</h4>
       </div>
       <div class="modal-body text-center">
         <transition>
@@ -115,7 +115,7 @@
           <br>
           Description: <p>{{movie.description_full}}</p>
           <br>
-          
+
 
         </div>
 
