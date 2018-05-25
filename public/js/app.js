@@ -78257,7 +78257,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getMovie: function getMovie(id) {
       var that = this;
       axios.get('https://yts.am/api/v2/movie_details.json?movie_id=' + id + '&with_cast=true&with_images=true').then(function (data) {
-        that.movie = data.data;
+        that.movie = data.data.data;
 
         that.movie_details_ready = true;
         $('#movieModal').modal('show');
