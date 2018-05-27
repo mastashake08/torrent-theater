@@ -121,7 +121,9 @@
           <ul>
             <li v-for="cast in movie.cast">
               <span>
-                <img class="img img-rounded" :src="cast.url_small_image" :alt="cast.name"/> - {{cast.name}}
+                <img class="img img-rounded" :src="cast.url_small_image" :alt="cast.name"/>
+                <br>
+                {{cast.name}}
               </span>
             </li>
           </ul>
@@ -294,7 +296,7 @@
             app.logEvent('a2hs', 'installed');
           });
           this.client = new WebTorrent();
-          this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=year');
+          this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=rating');
         } else {
           // Use a fallback
           alert("WebTorrent is not supported in this browser! Please upgrade your browser!");
