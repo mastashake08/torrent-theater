@@ -122,7 +122,7 @@
           <strong># Of Seeds:</strong> {{movie.torrents[0].seeds}}
           <hr>
           <h2>Cast</h2>
-          <ul>
+          <ul class="list-unstyled">
             <li v-for="cast in movie.cast">
               <span>
                 <img class="img img-rounded" :src="cast.url_small_image" :alt="cast.name"/>
