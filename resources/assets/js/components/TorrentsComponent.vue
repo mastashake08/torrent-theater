@@ -121,7 +121,7 @@
           <ul>
             <li v-for="cast in movie.cast">
               <span>
-                <img class="img img-rounded" :src="cast.url_small_image"/> - {{cast.name}} as {{cast.character_name}}
+                <img class="img img-rounded" :src="cast.url_small_image" :alt="cast.name"/> - {{cast.name}}
               </span>
             </li>
           </ul>
