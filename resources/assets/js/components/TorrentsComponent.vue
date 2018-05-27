@@ -109,12 +109,22 @@
           <br>
           Title: {{movie.title_long}}
           <br>
+          # Of Seeds: {{movie.torrents[0].seeds}}
+          <br>
           MPA Rating: {{movie.mpa_rating}}
           <br>
           Rotten Tomatoes Rating: {{movie.rating}}/10
           <br>
           Description: <p>{{movie.description_full}}</p>
-          <br>
+          <hr>
+          <h2>Cast</h2>
+          <ul>
+            <li v-for="cast in movie.cast">
+              <span>
+                <img class="img img-rounded" :src="cast.url_small_image"/> - {{cast.name}} as {{cast.character_name}}
+              </span>
+            </li>
+          </ul>
 
 
         </div>
@@ -174,6 +184,7 @@
               that.client.remove(item);
             });
             this.total = 0;
+            this.downloadSpeed = 0;
             userInput = userInput || false;
             if(userInput == false){
             torrent = this.formatMagnet(torrent);
@@ -283,7 +294,7 @@
             app.logEvent('a2hs', 'installed');
           });
           this.client = new WebTorrent();
-          this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=seeds');
+          this.fetchTorrents('https://yts.am/api/v2/list_movies.json?sort=year');
         } else {
           // Use a fallback
           alert("WebTorrent is not supported in this browser! Please upgrade your browser!");
