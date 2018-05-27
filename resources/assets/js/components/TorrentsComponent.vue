@@ -104,19 +104,22 @@
       <div class="modal-body text-center">
         <transition>
         <div v-if="movie_details_ready">
-
+          <h2>Details</h2>
           <img class="rounded mx-auto d-block center-block" :src="movie.medium_cover_image"/>
           <br>
-          Title: {{movie.title_long}}
+          <strong>Title:</strong> {{movie.title_long}}
           <br>
-          # Of Seeds: {{movie.torrents[0].seeds}}
+          <strong>Runtime</strong> {{movie.runtime}} minutes
           <br>
-          # Of Peers: {{movie.torrents[0].peers}}
-          MPA Rating: {{movie.mpa_rating}}
+          <strong>MPA Rating:</strong> {{movie.mpa_rating}}
           <br>
-          Rotten Tomatoes Rating: {{movie.rating}}/10
+          <strong>Rotten Tomatoes Rating:</strong> {{movie.rating}}/10
           <br>
-          Description: <p>{{movie.description_full}}</p>
+          <strong>Description:</strong> <p>{{movie.description_full}}</p>
+          <br>
+          <strong># Of Peers:</strong> {{movie.torrents[0].peers}}
+          <br>
+          <strong># Of Seeds:</strong> {{movie.torrents[0].seeds}}
           <hr>
           <h2>Cast</h2>
           <ul>
