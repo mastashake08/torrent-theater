@@ -111,6 +111,7 @@
           <br>
           # Of Seeds: {{movie.torrents[0].seeds}}
           <br>
+          # Of Peers: {{movie.torrents[0].peers}}
           MPA Rating: {{movie.mpa_rating}}
           <br>
           Rotten Tomatoes Rating: {{movie.rating}}/10
